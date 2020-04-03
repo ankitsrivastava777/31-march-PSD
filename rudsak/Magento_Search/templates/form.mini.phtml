@@ -29,14 +29,16 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                     <label class="label" for="search" data-role="minisearch-label">
                         <span><?= $block->escapeHtml(__('Search')) ?></span>
                     </label>
+
                     <div class="control">
                         <input id="search"
-                           data-mage-init='{"quickSearch":{
-                                "formSelector":"#search_mini_form",
-                                "url":"<?= $block->escapeUrl($helper->getSuggestUrl())?>",
-                                "destinationSelector":"#search_autocomplete",
-                                "minSearchLength":"<?= $block->escapeHtml($helper->getMinQueryLength()) ?>"}
-                           }'
+                        data-mage-init='{"quickSearch":
+                        {
+                            "formSelector":"#search_mini_form",
+                            "url":"<?= $block->escapeUrl($helper->getSuggestUrl())?>",
+                            "destinationSelector":"#search_autocomplete",
+                            "minSearchLength":"<?= $block->escapeHtml($helper->getMinQueryLength()) ?>"}
+                        }'
                            type="text"
                            name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()) ?>"
                            value="<?= $block->escapeHtmlAttr($helper->getEscapedQueryText()) ?>"
@@ -66,24 +68,27 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
 </div>
 
 <script>
-require(
+require
+(
     ['jquery', 'mage/translate']
     , function($) 
     {
-    $('#click-me').on('click',function(e)
-    {     
+        $('#click-me').on('click',function(e)
+        {     
         $("#search-box").show(1000);
         e.stopPropagation();
-           event.preventDefault();
+        event.preventDefault();
         return false;
         })
         $("#search-box").click(function(e)
         {
             e.stopPropagation();
         });
-        $(document).click(function(){
-        $("#search-box").hide();
-});
-    });
+        $(document).click(function()
+        {
+            $("#search-box").hide();
+        });
+    }
+);
 
 </script>
