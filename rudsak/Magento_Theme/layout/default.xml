@@ -29,12 +29,10 @@
                 <argument name="label" xsi:type="string" translate="true">Register</argument>
             </arguments>
         </referenceBlock>
-        <move element="top.search" destination="navigation.sections" after="catalog.topnav"/>
-        <move element="catalog.topnav" destination="header.panel.wrapper"/>
+        <move element="top.search" destination="header-wrapper" after="catalog.topnav"/>
+        <move element="catalog.topnav" destination="header-wrapper" after="logo"/>
         <move element="minicart" destination="header.links"/>
-        <move element="logo" destination="header.panel.wrapper"/>
          <referenceBlock name="header.panel">
-               <!-- Contact us Link -->
             <block class="Magento\Framework\View\Element\Html\Link" name="contactus.link">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="false">English</argument>
@@ -42,7 +40,6 @@
                 </arguments>
             </block>
         </referenceBlock>
-    <referenceBlock name="navigation.sections" display="false"/>
-    <referenceBlock name="header.content" remove="true"/>  
+        <referenceBlock name="navigation.sections" display="false"/>  
     </body>
 </page>
