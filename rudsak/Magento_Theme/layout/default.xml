@@ -11,7 +11,7 @@
     <block name="require.js" class="Magento\Framework\View\Element\Template" template="Magento_Theme::page/js/require_js.phtml" />     
         <referenceBlock name="logo">
             <arguments>
-            <argument name="logo_file" xsi:type="string">images/header.png</argument>
+                <argument name="logo_file" xsi:type="string">images/header.png</argument>
                 <argument name="logo_alt" xsi:type="string">headerImg</argument>
                 <argument name="logo_img_width" xsi:type="number">180</argument>
                 <argument name="logo_img_height" xsi:type="number">45</argument>
@@ -24,22 +24,21 @@
                 <argument name="show_part" xsi:type="string">other</argument>
             </arguments>
         </referenceBlock>
-        <referenceBlock name="register-link">
-            <arguments>
-                <argument name="label" xsi:type="string" translate="true">Register</argument>
-            </arguments>
-        </referenceBlock>
         <move element="top.search" destination="header-wrapper" after="catalog.topnav"/>
         <move element="catalog.topnav" destination="header-wrapper" after="logo"/>
-        <move element="minicart" destination="header.links"/>
          <referenceBlock name="header.panel">
-            <block class="Magento\Framework\View\Element\Html\Link" name="contactus.link">
-                <arguments>
-                    <argument name="label" xsi:type="string" translate="false">English</argument>
-                    <argument name="path" xsi:type="string" translate="false">contact-us</argument>
-                </arguments>
-            </block>
+               <block name="require" class="Magento\Framework\View\Element\Template" template="Magento_Theme::form.phtml" /> 
         </referenceBlock>
         <referenceBlock name="navigation.sections" display="false"/>  
+        <referenceBlock name="header.panel">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Theme::form.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="page.bottom.container">
+            <container name="chennai.review" htmlTag="div" htmlClass="review">
+                <block class="Excellence\Design\Block\Review" name="chennai.review.info" template="Excellence_Design::review.phtml"/>
+            </container>
+        </referenceContainer>
     </body>
 </page>

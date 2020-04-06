@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -15,15 +16,11 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
     <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>
     <div class="block block-content">
         <form class="form minisearch" id="search_mini_form" action="<?= $block->escapeUrl($helper->getResultUrl()) ?>" method="get">
-        
+
             <div class="actions">
-                <button
-                    id="click-me"
-                    title="<?= $block->escapeHtmlAttr(__('Search')) ?>" 
-                    aria-label="Search"
-                >
-                <i class="fas fa-search"></i>     
-                </button>   
+                <button id="click-me" title="<?= $block->escapeHtmlAttr(__('Search')) ?>" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
                 <br>
                 <div id="search-box" style="display:none;">
                     <label class="label" for="search" data-role="minisearch-label">
@@ -31,64 +28,60 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                     </label>
 
                     <div class="control">
-                        <input id="search"
-                        data-mage-init='{"quickSearch":
+                        <input id="search" data-mage-init='{"quickSearch":
                         {
                             "formSelector":"#search_mini_form",
-                            "url":"<?= $block->escapeUrl($helper->getSuggestUrl())?>",
+                            "url":"<?= $block->escapeUrl($helper->getSuggestUrl()) ?>",
                             "destinationSelector":"#search_autocomplete",
                             "minSearchLength":"<?= $block->escapeHtml($helper->getMinQueryLength()) ?>"}
-                        }'
-                           type="text"
-                           name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()) ?>"
-                           value="<?= $block->escapeHtmlAttr($helper->getEscapedQueryText()) ?>"
-                           placeholder="<?= $block->escapeHtmlAttr(__('Search entire store here...')) ?>"
-                           class="input-text"
-                           maxlength="<?= $block->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
-                           role="combobox"
-                           aria-haspopup="false"
-                           aria-autocomplete="both"
-                           autocomplete="off"
-                           aria-expanded="false"/>
-                    <div id="search_autocomplete" class="search-autocomplete"></div>
-                    <?= $block->getChildHtml() ?>
-                    <div class="actions">
-                        <button
-                        id="click-search"
-                            title="<?= $block->escapeHtmlAttr(__('Search')) ?>"
-                            aria-label="Search"
-                        >
-                            <span><?= $block->escapeHtml(__('Search')) ?></span>
-                        </button>
+                        }' type="text" name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()) ?>" value="<?= $block->escapeHtmlAttr($helper->getEscapedQueryText()) ?>" placeholder="<?= $block->escapeHtmlAttr(__('Search entire store here...')) ?>" class="input-text" maxlength="<?= $block->escapeHtmlAttr($helper->getMaxQueryLength()) ?>" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off" aria-expanded="false" />
+                        <div id="search_autocomplete" class="search-autocomplete"></div>
+                        <?= $block->getChildHtml() ?>
+                        <div class="actions">
+                            <button id="click-search" title="<?= $block->escapeHtmlAttr(__('Search')) ?>" aria-label="Search">
+                                <span><?= $block->escapeHtml(__('Search')) ?></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
         </form>
     </div>
 </div>
 
 <script>
-require
-(
-    ['jquery', 'mage/translate']
-    , function($) 
-    {
-        $('#click-me').on('click',function(e)
-        {     
-        $("#search-box").show(1000);
-        e.stopPropagation();
-        event.preventDefault();
-        return false;
-        })
-        $("#search-box").click(function(e)
-        {
-            e.stopPropagation();
-        });
-        $(document).click(function()
-        {
-            $("#search-box").hide();
-        });
-    }
-);
+    require
+        (
+            ['jquery', 'mage/translate'],
+            function($) {
+                $('#click-me').on('click', function(e) {
+                    $(this).addClass('expand').css({
+                        "margin-left": "-40px",
+                        "margin-top": "-43px"
+                    });
 
+                    $("#search-box").show();
+                    $('.minicart-wrapper').css({
+                        "margin-right": "5px",
+                        "margin-top": "-245px"
+                    });
+                    e.stopPropagation();
+                    event.preventDefault();
+                    return false;
+                })
+                $("#search-box").click(function(e) {
+                    e.stopPropagation();
+                });
+                $(document).click(function() {
+                    $("#search-box").hide();
+                    $("#click-me").removeClass("expand").css({
+                        "margin-left": "-40px",
+                        "margin-top": "-74px"
+                    });
+                    $('.minicart-wrapper').css({
+                        "margin-right": "5px",
+                        "margin-top": "-173px"
+                    });
+                });
+            }
+        );
 </script>
