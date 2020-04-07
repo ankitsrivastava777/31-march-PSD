@@ -30,15 +30,18 @@
                <block name="require" class="Magento\Framework\View\Element\Template" template="Magento_Theme::form.phtml" /> 
         </referenceBlock>
         <referenceBlock name="navigation.sections" display="false"/>  
-        <referenceBlock name="header.panel">
+        <referenceBlock name="footer_links">
             <action method="setTemplate">
-                <argument name="template" xsi:type="string">Magento_Theme::form.phtml</argument>
+                <argument name="template" xsi:type="string">Magento_Theme::footer_menu.phtml</argument>
             </action>
         </referenceBlock>
+        
         <referenceContainer name="page.bottom.container">
             <container name="chennai.review" htmlTag="div" htmlClass="review">
                 <block class="Excellence\Design\Block\Review" name="chennai.review.info" template="Excellence_Design::review.phtml"/>
             </container>
         </referenceContainer>
+           <referenceBlock name="form.subscribe" remove="true" />
+             <!-- <referenceContainer name="footer_links" remove="true" /> -->
     </body>
 </page>
