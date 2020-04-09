@@ -5,10 +5,11 @@
  * See COPYING.txt for license details.
  */
 -->
-<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page layout="3columns" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="default_head_blocks"/>
     <body>
-    <block name="require.js" class="Magento\Framework\View\Element\Template" template="Magento_Theme::page/js/require_js.phtml" />     
+        <block name="require.js" class="Magento\Framework\View\Element\Template" template="Magento_Theme::page/js/require_js.phtml" />
         <referenceBlock name="logo">
             <arguments>
                 <argument name="logo_file" xsi:type="string">images/header.png</argument>
@@ -18,7 +19,7 @@
                 <argument name="logo_class" xsi:type="string">abc</argument>
             </arguments>
         </referenceBlock>
-        <referenceBlock name="skip_to_content" remove="true"/>        
+        <referenceBlock name="skip_to_content" remove="true"/>
         <referenceBlock name="header">
             <arguments>
                 <argument name="show_part" xsi:type="string">other</argument>
@@ -26,19 +27,23 @@
         </referenceBlock>
         <move element="top.search" destination="header-wrapper" after="catalog.topnav"/>
         <move element="catalog.topnav" destination="header-wrapper" after="logo"/>
-         <referenceBlock name="header.panel">
-               <block name="require" class="Magento\Framework\View\Element\Template" template="Magento_Theme::form.phtml" /> 
-        </referenceBlock>
-        <referenceBlock name="navigation.sections" display="false"/>  
         <referenceBlock name="header.panel">
+            <block name="require" class="Magento\Framework\View\Element\Template" template="Magento_Theme::form.phtml" />
+        </referenceBlock>
+        <referenceBlock name="navigation.sections" display="false"/>
+        <referenceBlock name="footer_links">
             <action method="setTemplate">
-                <argument name="template" xsi:type="string">Magento_Theme::form.phtml</argument>
+                <argument name="template" xsi:type="string">Magento_Theme::footer_menu.phtml</argument>
             </action>
         </referenceBlock>
         <referenceContainer name="page.bottom.container">
             <container name="chennai.review" htmlTag="div" htmlClass="review">
                 <block class="Excellence\Design\Block\Review" name="chennai.review.info" template="Excellence_Design::review.phtml"/>
             </container>
+        </referenceContainer>
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <referenceContainer name="footer">
+            <block class="Magento\Directory\Block\Currency" name="currency" before="store_language" template="currency.phtml"/>
         </referenceContainer>
     </body>
 </page>
